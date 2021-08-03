@@ -24,6 +24,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.PixelFormat;
 import android.os.Parcelable;
 import android.provider.Browser;
 import android.content.res.Resources;
@@ -35,6 +36,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -1028,8 +1030,20 @@ public class InAppBrowser extends CordovaPlugin {
 
                 WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
                 lp.copyFrom(dialog.getWindow().getAttributes());
+                DisplayMetrics displaymetrics = new DisplayMetrics();
+                dialog.getWindow().getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+                dialog.getWindow().setSoftInputMode(LayoutParams.SOFT_INPUT_ADJUST_PAN);
+                   
                 lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-                lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+                lp.height = displaymetrics.heightPixels - 300;
+                lp.gravity = Gravity.TOP;
+                lp.y = 300;
+                   
+                lp.flags = LayoutParams.FLAG_NOT_TOUCH_MODAL;
+
+
+                //lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+                //lp.height = WindowManager.LayoutParams.MATCH_PARENT;
 
                 if (dialog != null) {
                     dialog.setContentView(main);
