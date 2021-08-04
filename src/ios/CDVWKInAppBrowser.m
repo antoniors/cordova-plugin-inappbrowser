@@ -306,6 +306,8 @@ static CDVWKInAppBrowser* instance = nil;
                 if(initHidden && osVersion < 11){
                    frame.origin.x = -10000;
                 }
+                frame.size.height = frame.size.height - 110;
+                frame.origin.y = 110;
                 strongSelf->tmpWindow = [[UIWindow alloc] initWithFrame:frame];
             }
             UIViewController *tmpController = [[UIViewController alloc] init];
