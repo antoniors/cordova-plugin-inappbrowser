@@ -1040,7 +1040,7 @@ public class InAppBrowser extends CordovaPlugin {
                 dialog.getWindow().setSoftInputMode(LayoutParams.SOFT_INPUT_ADJUST_PAN);
                    
                 lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-                lp.height = displaymetrics.heightPixels - (300 + 57);
+                lp.height = displaymetrics.heightPixels - (300 + 150);
                 lp.gravity = Gravity.TOP;
                 lp.y = 300;
                    
