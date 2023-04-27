@@ -306,7 +306,13 @@ static CDVWKInAppBrowser* instance = nil;
                 if(initHidden && osVersion < 11){
                    frame.origin.x = -10000;
                 }
-                frame.size.height = frame.size.height - 145;
+               if (@available(iOS 11.0, *)) {
+                   UIWindow *window = UIApplication.sharedApplication.windows.firstObject;
+                   CGFloat bottomPadding = window.safeAreaInsets.bottom;
+                   frame.size.height = frame.size.height - (145 + 57 + bottomPadding);
+               } else {
+                 frame.size.height = frame.size.height - (145 + 57);
+               }
                 frame.origin.y = 145;
                 strongSelf->tmpWindow = [[UIWindow alloc] initWithFrame:frame];
             }
